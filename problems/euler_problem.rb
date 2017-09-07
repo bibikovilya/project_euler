@@ -22,7 +22,7 @@ class EulerProblem
       if result == answer
         puts "\e[32mCongratulations, the answer you gave to problem #{number} is correct. Answer: \e[1m#{result}\e[22m\e[0m"
       else
-        puts "\e[31mSorry, but the answer you gave appears to be incorrect.\e[0m"
+        puts "\e[31mSorry, but the answer you gave appears to be incorrect. Answer: \e[1m#{result}\e[22m\e[0m"
       end
       puts "\e[34m#{'='*100}\e[0m"
     end
