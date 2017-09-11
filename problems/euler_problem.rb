@@ -17,7 +17,7 @@ class EulerProblem
 
       puts "\e[34m#{'-'*100}\e[0m"
 
-      formatted_output('Your', &block)
+      formatted_output(&block)
     end
 
     def euler!(&block)
@@ -34,18 +34,20 @@ class EulerProblem
       self.name[/\d+/].to_i
     end
 
-    def formatted_output(version)
+    def formatted_output(version = nil)
       bench = Benchmark.measure do
         result = yield if block_given?
 
-        puts "\e[1m#{version} version:\e[22m"
+        puts "\e[1m#{version} version:\e[22m" if version
 
         if result == answer
           puts "\e[32mCongratulations, the answer you gave to problem #{number} is correct. Answer: \e[1m#{result}\e[22m\e[0m"
         else
-          puts "\e[31mSorry, but the answer you gave appears to be incorrect. Answer: \e[1m#{result}\e[22m\e[0m"
+          puts "\e[31mSorry, but the answer you gave appears to be incorrect."
+          puts "Answer: \e[1m#{result}\e[22m\e[0m" if result
         end
       end
+      puts "\e[34m#{'-'*100}\e[0m"
       puts "\e[35m\e[1mBenchmark:\e[22m"
       printf("\e[35m%10s%11s%11s%12s\n", 'user', 'system', 'total', 'real')
       puts bench.format
